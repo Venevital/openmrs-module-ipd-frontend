@@ -37,6 +37,7 @@ import {
   formatTime,
   isTimeInFuture,
 } from "../../../../utils/DateTimeUtils";
+import { isSystemGeneratedTask } from "../../../../utils/CommonUtils";
 
 const UpdateNursingTasks = (props) => {
   const {
@@ -166,9 +167,9 @@ const UpdateNursingTasks = (props) => {
   useEffect(() => {
     medicationTasks.map((medicationTask) => {
       updateIsPRNMedication(medicationTask?.dosingInstructions?.asNeeded);
-      updateIsNonMedication(medicationTask?.taskType?.display);
+      updateIsNonMedication(medicationTask?.isANonMedicationTask);
       updateIsSystemGeneratedNonMedication(
-        medicationTask?.taskType?.display == "nursing_activity_system"
+        isSystemGeneratedTask(medicationTask)
       );
       updateTasks((prev) => {
         return {
