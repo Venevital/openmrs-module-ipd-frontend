@@ -1301,6 +1301,7 @@ exports[`AddEmergencyTasks should render the component with loading state 1`] = 
                           role="combobox"
                           style="width: 170px;"
                           tabindex="0"
+                          title=""
                           type="text"
                           value=""
                         />
@@ -1383,6 +1384,7 @@ exports[`AddEmergencyTasks should render the component with loading state 1`] = 
                         role="combobox"
                         style="width: 100%;"
                         tabindex="0"
+                        title=""
                         type="text"
                         value=""
                       />
@@ -1574,6 +1576,7 @@ exports[`AddEmergencyTasks should render the component with loading state 1`] = 
                       role="combobox"
                       style="width: 100%;"
                       tabindex="0"
+                      title=""
                       type="text"
                       value=""
                     />
