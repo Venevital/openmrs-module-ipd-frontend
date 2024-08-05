@@ -95,7 +95,9 @@ const UpdateNursingTasks = (props) => {
     setOpenConfirmationModal(false);
     updateNursingTasksSlider(false);
     updateIsPRNMedication(false);
-    task.status === 'not-done' ? handleAuditEvent("SKIP_SCHEDULED_MEDICATION_TASK") : handleAuditEvent("ADMINISTER_MEDICATION_TASK");
+    task.status === "not-done"
+      ? handleAuditEvent("SKIP_SCHEDULED_MEDICATION_TASK")
+      : handleAuditEvent("ADMINISTER_MEDICATION_TASK");
   };
 
   const saveAdministeredNonMedicationTasks = () => {
@@ -110,7 +112,9 @@ const UpdateNursingTasks = (props) => {
     const response = isPRNMedication
       ? await saveEmergencyMedication(administeredTasks[0])
       : await saveAdministeredMedication(administeredTasks);
-    response.status === 200 ? saveAdministeredTasks(administeredTasks[0]) : null;
+    response.status === 200
+      ? saveAdministeredTasks(administeredTasks[0])
+      : null;
   };
 
   const createAdministeredTasksPayload = () => {
@@ -507,21 +511,24 @@ const UpdateNursingTasks = (props) => {
                       }`}
                     >
                       {medicationTask.drugName}
-                      {!isNonMedication ?
-                      (<><FormattedMessage id={"AT"} defaultMessage={" at "} />
-                        {enable24HourTime
-                          ? formatTime(
-                              medicationTasks[0].startTime,
-                              timeFormatFor24Hr,
-                              timeFormatFor24Hr
-                            )
-                          : formatTime(
-                              medicationTasks[0].startTime,
-                              timeFormatFor24Hr,
-                              timeFormatFor12Hr
-                            )}
+                      {!isNonMedication ? (
+                        <>
+                          <FormattedMessage id={"AT"} defaultMessage={" at "} />
+                          {enable24HourTime
+                            ? formatTime(
+                                medicationTasks[0].startTime,
+                                timeFormatFor24Hr,
+                                timeFormatFor24Hr
+                              )
+                            : formatTime(
+                                medicationTasks[0].startTime,
+                                timeFormatFor24Hr,
+                                timeFormatFor12Hr
+                              )}
                         </>
-                      ) : (<></>)}
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   )}
                   {!isNonMedication ? (
@@ -533,7 +540,7 @@ const UpdateNursingTasks = (props) => {
                   )}
                 </div>
                 {tasks[medicationTask.uuid]?.route ? (
-                  <div className="medication-details">
+                  <div className="task-details">
                     <span>{medicationTask.dosage}</span>
                     {medicationTask.doseType && (
                       <span>&nbsp;-&nbsp;{medicationTask.doseType}</span>
@@ -541,7 +548,21 @@ const UpdateNursingTasks = (props) => {
                     <span>&nbsp;-&nbsp;{medicationTask.drugRoute}</span>
                   </div>
                 ) : (
-                  <></>
+                  <div className="task-details">
+                    {medicationTask.creator &&
+                      medicationTask.creator.display &&
+                      !isSystemGeneratedNonMedication && (
+                        <div className="task-creator">
+                          <FormattedMessage
+                            id={"CREATED_BY"}
+                            defaultMessage={`Created by {provider}`}
+                            values={{
+                              provider: medicationTask?.creator?.display,
+                            }}
+                          />
+                        </div>
+                      )}
+                  </div>
                 )}
                 {(tasks[medicationTask.uuid]?.actualTime ||
                   tasks[medicationTask.uuid]?.skipped) && (
