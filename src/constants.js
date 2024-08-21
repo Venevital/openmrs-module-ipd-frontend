@@ -151,3 +151,12 @@ export const DAEMON_USER = {
   name: "daemon",
   uuid: "A4F30A1B-5EB9-11DF-A648-37A07F9C90FB",
 };
+
+export const PRIVILEGE_CONSTANTS = {
+  ADT: "Assign Beds",
+  EDIT_MEDICATION_TASKS: "Edit Medication Tasks",
+  EDIT_ADHOC_MEDICATION_TASKS: "Edit adhoc medication tasks",
+  ADD_TASKS: "Add Tasks",
+  EDIT_TASKS: "Edit Tasks",
+  EDIT_MEDICATION_ADMINISTRATION: "Edit Medication Administration",
+};
