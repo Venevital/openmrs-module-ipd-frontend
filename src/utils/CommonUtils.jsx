@@ -192,7 +192,7 @@ export const getNoDataCapturedMessage = (formName) => {
 export const mockConfig = {
   sections: [
     {
-      title: "Vitals and Nutritional Values",
+      title: "Signos Vitales y Valores Nutricionales",
       componentKey: "VT",
       displayOrder: 1,
       refreshKey: 1,
