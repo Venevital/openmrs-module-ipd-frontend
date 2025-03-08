@@ -296,37 +296,37 @@ export const mockConfig = {
 export const mockConfigFor12HourFormat = {
   sections: [
     {
-      title: "Vitals and Nutritional Values",
+      title: "Signos Vitales y Valores Nutricionales",
       componentKey: "VT",
       displayOrder: 1,
       refreshKey: 1,
     },
     {
-      title: "Allergies",
+      title: "Alergias",
       componentKey: "AL",
       displayOrder: 2,
       refreshKey: 2,
     },
     {
-      title: "Diagnosis",
+      title: "Diagnóstico",
       componentKey: "DG",
       displayOrder: 3,
       refreshKey: 3,
     },
     {
-      title: "Treatments",
+      title: "Tratamientos",
       componentKey: "TR",
       displayOrder: 4,
       refreshKey: 4,
     },
     {
-      title: "Nursing Tasks",
+      title: "Tareas de Enfermería",
       componentKey: "NT",
       displayOrder: 5,
       refreshKey: 5,
     },
     {
-      title: "Drug Chart",
+      title: "Gráfico de Medicación",
       componentKey: "DC",
       displayOrder: 6,
       refreshKey: 6,
