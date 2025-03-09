@@ -9,7 +9,7 @@ export function I18nProvider({ children }) {
 
   useEffect(() => {
     getTranslations(locale).then(setMessages);
-  }, []);
+  }, [locale]);
 
   if (!messages) {
     return <div></div>;

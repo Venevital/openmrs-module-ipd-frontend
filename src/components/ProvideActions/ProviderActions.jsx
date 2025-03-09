@@ -10,6 +10,7 @@ import "./ProviderActions.scss";
 import { FormattedMessage } from "react-intl";
 import { getCookies } from "../../utils/CommonUtils";
 import PropTypes from "prop-types";
+import { I18nProvider } from "../../features/i18n/I18nProvider";
 
 export const ProviderActions = (props) => {
   const { onLogOut } = props;
@@ -50,10 +51,12 @@ export const ProviderActions = (props) => {
           <div className={"dropdown"}>
             <div onClick={handleChangePassword}>
               <IbmCloudHyperProtectCryptoServices24 />
-              <FormattedMessage
-                id={"CHANGE_PASSWORD"}
-                defaultMessage={"Change Password"}
-              />
+              <I18nProvider>
+                <FormattedMessage
+                  id={"CHANGE_PASSWORD"}
+                  defaultMessage={"Change Password"}
+                />
+              </I18nProvider>
             </div>
           </div>
         )}

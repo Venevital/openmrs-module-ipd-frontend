@@ -42,26 +42,36 @@ export const PatientHeader = (props) => {
   const [bedInformation, setBedInformation] = useState();
   const [profilePicture, setProfilePicture] = useState();
   const years = <FormattedMessage id="YEARS" defaultMessage="Years" />;
+
   const showDetails = (
-    <FormattedMessage id="SHOW_PATIENT_DETAILS" defaultMessage="Show Details" />
+    <FormattedMessage
+      id={"SHOW_PATIENT_DETAILS"}
+      xw
+      defaultMessage="Show Details"
+    />
   );
   const hideDetails = (
     <FormattedMessage id="HIDE_PATIENT_DETAILS" defaultMessage="Hide Details" />
   );
   const patientDetailsHeaders = {
-    address: <FormattedMessage id={"Address"} defaultMessage={"Address"} />,
+    address: (
+      <FormattedMessage id={"PATIENT_ADDRESS"} defaultMessage={"Address"} />
+    ),
     contactDetails: (
       <FormattedMessage
-        id={"Contact Details"}
+        id={"CONTACT_DETAILS_HEADER"}
         defaultMessage={"Contact Details"}
       />
     ),
     relationships: (
-      <FormattedMessage id={"Relationships"} defaultMessage={"Relationships"} />
+      <FormattedMessage
+        id={"RELATIONSHIPS_HEADER"}
+        defaultMessage={"Relationships"}
+      />
     ),
   };
   const visitSummaryMessage = (
-    <FormattedMessage id="VISIT_SUMMARY" defaultMessage="Visit Summaries" />
+    <FormattedMessage id={"VISIT_SUMMARY"} defaultMessage="Visit Summaries" />
   );
 
   const getContactDetailsConfigs = async () => {
@@ -137,7 +147,11 @@ export const PatientHeader = (props) => {
           <>
             <Grid>
               <Row className="patient-image-and-details">
-                <img className={"patient-image"} src={profilePicture} alt="patient-image"/>
+                <img
+                  className={"patient-image"}
+                  src={profilePicture}
+                  alt="patient-image"
+                />
                 <Column>
                   <Row className="header-title-row">
                     <div className="patient-name-and-navigations">
@@ -149,20 +163,27 @@ export const PatientHeader = (props) => {
                       </Link>
                     </div>
                     {isUserPrivileged(currentUser, PRIVILEGE_CONSTANTS.ADT) && (
-                    <OverflowMenu
-                      data-testid="overflow-menu"
-                      flipped={true}
-                      aria-label="overflow-menu"
-                      className="patient-movement-overflow"
-                    >
-                      <OverflowMenuItem
-                        data-testid="overflow-menu-item1"
-                        title="item-patient-movement"
-                        itemText="Patient Movement"
-                        onClick={() => updatePatientMovementModal(!isModalOpen)}
-                        disabled={isReadMode}
-                      />
-                    </OverflowMenu>
+                      <OverflowMenu
+                        data-testid="overflow-menu"
+                        flipped={true}
+                        aria-label="overflow-menu"
+                        className="patient-movement-overflow"
+                      >
+                        <OverflowMenuItem
+                          data-testid="overflow-menu-item1"
+                          title="item-patient-movement"
+                          itemText={
+                            <FormattedMessage
+                              id="PATIENT_MOVEMENT"
+                              defaultMessage="Patient Movement"
+                            />
+                          }
+                          onClick={() =>
+                            updatePatientMovementModal(!isModalOpen)
+                          }
+                          disabled={isReadMode}
+                        />
+                      </OverflowMenu>
                     )}
                   </Row>
                   <Row>

@@ -41,7 +41,7 @@ export default function Dashboard(props) {
     isReadMode = false,
     visitSummary,
     source,
-    currentUser
+    currentUser,
   } = hostData;
   const [sliderContentModified, setSliderContentModified] = useState({
     treatments: false,
@@ -162,9 +162,17 @@ export default function Dashboard(props) {
     }
   };
 
-  const handleAuditEvent = ( eventType ) => {
-    var messageParams = {visitUuid: hostData.visitSummary.uuid, visitType: hostData.visitSummary.visitType};
-    hostApi.handleAuditEvent(patient.uuid, eventType, messageParams, "MODULE_LABEL_CLINICAL_KEY");
+  const handleAuditEvent = (eventType) => {
+    var messageParams = {
+      visitUuid: hostData.visitSummary.uuid,
+      visitType: hostData.visitSummary.visitType,
+    };
+    hostApi.handleAuditEvent(
+      patient.uuid,
+      eventType,
+      messageParams,
+      "MODULE_LABEL_CLINICAL_KEY"
+    );
   };
 
   const updateWindowWidth = () => {
@@ -233,27 +241,30 @@ export default function Dashboard(props) {
                     renderIcon={UserActivity24}
                   />
                 </div>
-                <SideNav
-                  id="Side-Nav"
-                  aria-label="Side navigation"
-                  className="navbar-border"
-                  expanded={isSideNavExpanded}
-                >
-                  <SideNavItems>
-                    {sections?.map((el) => {
-                      return (
+                <I18nProvider>
+                  <SideNav
+                    id="Side-Nav"
+                    aria-label="Side navigation"
+                    className="navbar-border"
+                    expanded={isSideNavExpanded}
+                  >
+                    <SideNavItems>
+                      {sections?.map((el) => (
                         <SideNavLink
                           className="cursor-pointer"
                           isActive={el.componentKey === selectedTab}
                           key={el.componentKey}
                           onClick={() => scrollToSection(el.componentKey)}
                         >
-                          {el.title}
+                          <FormattedMessage
+                            id={`NAVBAR_${el.componentKey}`}
+                            defaultMessage={el.title}
+                          />
                         </SideNavLink>
-                      );
-                    })}
-                  </SideNavItems>
-                </SideNav>
+                      ))}
+                    </SideNavItems>
+                  </SideNav>
+                </I18nProvider>
                 <ProviderActions onLogOut={hostApi.onLogOut} />
               </Header>
 
@@ -261,11 +272,13 @@ export default function Dashboard(props) {
                 className={checkSliderStatus() ? "main-with-slider" : "main"}
               >
                 <div className={"patient-header-navigation"}>
-                  <PatientHeader
-                    patientId={patient?.uuid}
-                    openVisitSummary={handleVisitSummaryNavigation}
-                    setPatientDetailsOpen={setPatientDetailsOpen}
-                  />
+                  <I18nProvider>
+                    <PatientHeader
+                      patientId={patient?.uuid}
+                      openVisitSummary={handleVisitSummaryNavigation}
+                      setPatientDetailsOpen={setPatientDetailsOpen}
+                    />
+                  </I18nProvider>
                 </div>
                 <Accordion className={"accordion"}>
                   <AllMedicationsContextProvider>
@@ -278,8 +291,16 @@ export default function Dashboard(props) {
                           style={{ marginBottom: "40px" }}
                         >
                           <Suspense fallback={<p>Loading...</p>}>
-                            <AccordionItem open title={el.title}>
-                              <I18nProvider>
+                            <I18nProvider>
+                              <AccordionItem
+                                open
+                                title={
+                                  <FormattedMessage
+                                    id={`NAVBAR_${el.componentKey}`}
+                                    defaultMessage={el.title}
+                                  />
+                                }
+                              >
                                 <RefreshDisplayControl.Provider
                                   value={refreshDisplayControl}
                                 >
@@ -289,8 +310,8 @@ export default function Dashboard(props) {
                                     config={el.config}
                                   />
                                 </RefreshDisplayControl.Provider>
-                              </I18nProvider>
-                            </AccordionItem>
+                              </AccordionItem>
+                            </I18nProvider>
                           </Suspense>
                         </section>
                       );
