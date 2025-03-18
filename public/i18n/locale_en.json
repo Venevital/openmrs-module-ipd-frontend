@@ -113,5 +113,6 @@
   "NAVBAR_TR": "Treatments",
   "NAVBAR_NT": "Nursing Tasks",
   "NAVBAR_DC": "Drug Chart",
-  "CHANGE_PASSWORD": "Change Password"
+  "CHANGE_PASSWORD": "Change Password",
+  "NO_SEARCH_RESULTS_PATIENTS_WARD_MESSAGE": "No Patient Found"
 }

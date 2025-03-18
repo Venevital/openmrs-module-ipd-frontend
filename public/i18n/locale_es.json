@@ -113,5 +113,6 @@
   "NAVBAR_TR": "Tratamientos",
   "NAVBAR_NT": "Tareas de enfermería",
   "NAVBAR_DC": "Cuadro de medicamentos",
-  "CHANGE_PASSWORD": "Cambiar la contraseña"
+  "CHANGE_PASSWORD": "Cambiar la contraseña",
+  "NO_SEARCH_RESULTS_PATIENTS_WARD_MESSAGE": "No se encontró ningún paciente"
 }

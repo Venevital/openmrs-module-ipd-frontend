@@ -110,7 +110,7 @@ describe("CareViewPatients", () => {
     expect(screen.getByRole("searchbox")).toBeTruthy();
     expect(
       screen.getByPlaceholderText(
-        "Type a minimum of 3 characters to search patient by name, bed number or patient ID"
+        "Escriba un mínimo de 3 caracteres para buscar al paciente por nombre, número de cama o ID del paciente"
       )
     ).toBeTruthy();
   });
